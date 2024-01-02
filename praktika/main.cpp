@@ -1,9 +1,11 @@
+#pragma once
+
 #include <iostream>
 #include "_deque_ptr.h"
 #include "adapteur_fdeque.h"
 #include "Merge_sort.h"
-#include <vector>
 #include<ctime>
+
 void example_metods() {
     int n = 10;  //количество элементов в деке
     adapteur_deque_ptr deque;
@@ -49,6 +51,7 @@ void sorting(int n){
     *nop = 0;
     adapteur_deque_ptr *deque = new adapteur_deque_ptr();
     deque->set_nop(nop);
+    //заполнение дека
     for(int i=0;i<n;i++){
         deque->push_down(rand() % 100);
     }
@@ -60,14 +63,8 @@ void sorting(int n){
 int main() {
     //example_metods();
    // example_sort();
-    /*const clock_t begin_time = clock();
-    MergeSort(deque, 0, n-1);
-    deque.display();
-    std::cout << float(clock() - begin_time) / CLOCKS_PER_SEC << std::endl;
-    std::cout << "NOP: " << nop << std::endl;
-    return 0;*/
     std::vector vect = {100, 300, 500, 800, 1000, 1500, 2000, 2500, 3000, 3500 };
-    int n = 2;
+    //int n = 2;
     for (int i=0;i<vect.size();i++){
         std:: cout << "num of operations: " << vect[i]<<std::endl;
         sorting(vect[i]);

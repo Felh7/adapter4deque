@@ -1,6 +1,5 @@
 
-#ifndef adapteur_f_deque_hpp
-#define adapteur_f_deque_hpp
+#pragma once
 
 #include "_deque_ptr.h"
 
@@ -48,36 +47,36 @@ bool adapteur_deque_ptr::is_empty(){
     return deque -> isEmpty();
 }
 
-int adapteur_deque_ptr::getElement(int index){
-    int size = deque->get_size(); *nop+=1;
+int adapteur_deque_ptr::getElement(int index){ //2+2*(13n)
+    int size = deque->get_size(); *nop+=1; //
     if ((index >= 0) and (index < size)){
         if (index > size / 2){
             class deque* tmp = new class deque(); *nop+=1;
             tmp->set_nop(nop); *nop+=1;
             int element;
             for (int i = 0; i <= size - index -1 ; i++) {
-                element = deque->pop_top();
-                tmp->push_top(element);
+                element = deque->pop_top(); //6
+                tmp->push_top(element);//7
                 *nop+=2;
             }
             for (int i = 0; i <= size - index - 1; i++) {
-                deque->push_top(tmp->pop_top());
+                deque->push_top(tmp->pop_top()); // 13
                 *nop+=2;
             }
             delete tmp;
             return element;
         }
         else {
-            class deque* tmp = new class deque(); *nop+=1;
-            tmp->set_nop(nop); *nop+=1;
+            class deque* tmp = new class deque(); *nop+=1; //1
+            tmp->set_nop(nop); *nop+=1; //1
             int element;
             for (int i = 0; i <= index; i++) {
-                element = deque->pop_down();
-                tmp->push_top(element);
+                element = deque->pop_down();//6
+                tmp->push_top(element);//7
                 *nop+=2;
             }
             for (int i = 0; i <= index; i++) {
-                deque->push_down(tmp->pop_top());
+                deque->push_down(tmp->pop_top());//13
                 *nop+=2;
             }
             delete tmp;
@@ -90,53 +89,53 @@ int adapteur_deque_ptr::getElement(int index){
     return -1;
 }
 
-bool adapteur_deque_ptr::setElement(int index, int element){
-    int size = deque->get_size(); *nop+=1;
+bool adapteur_deque_ptr::setElement(int index, int element){ //2+13n+1+13n+2+13n+1
+    int size = deque->get_size(); *nop+=1; //1
     if ((index >= 0) and (index < size)) {
-        class deque* tmpSt1 = new class deque(); *nop+=1;
-        tmpSt1->set_nop(nop); *nop+=1;
+        class deque* tmpSt1 = new class deque(); *nop+=1; //1
+        tmpSt1->set_nop(nop); *nop+=1; //1
         if (index > size / 2 ){
             for (int i = 0; i < size - index - 1; i++){
-                tmpSt1->push_top(deque->pop_top());
+                tmpSt1->push_top(deque->pop_top());//13
                 *nop+=2;
             }
-            tmpSt1->push_top(element); *nop+=1;
+            tmpSt1->push_top(element); *nop+=1;//1
             //int del_element= deque->pop_top(); *nop+=1;
             for (int i = size - index; i < size; i++){
-                tmpSt1->push_top(deque->pop_top());
+                tmpSt1->push_top(deque->pop_top());//13
                 *nop+=2;
             }
             delete(deque);
-            class deque* tmpSt2 = new class deque(); *nop+=1;
-            tmpSt2->set_nop(nop);*nop+=1;
+            class deque* tmpSt2 = new class deque(); *nop+= 1; //1
+            tmpSt2->set_nop(nop);*nop+=1;  //1
             for (int i = 0; i < size; i++){
-                tmpSt2->push_top(tmpSt1->pop_top());
+                tmpSt2->push_top(tmpSt1->pop_top()); //13
                 *nop+=2;
             }
             delete(tmpSt1);
-            deque = tmpSt2; *nop+=1;
+            deque = tmpSt2; *nop+=1; //1
             return true;
         }
         else{
             for (int i = 0; i < index; i++) {
-                tmpSt1->push_down(deque->pop_down());
+                tmpSt1->push_down(deque->pop_down()); //13
                 *nop+=2;
             }
-            tmpSt1->push_down(element); *nop+=1;
+            tmpSt1->push_down(element); *nop+=1;  //1
             //int del_element= deque->pop_down(); *nop+=1;
             for (int i = index+1; i < size; i++) {
-                tmpSt1->push_down(deque->pop_down());
+                tmpSt1->push_down(deque->pop_down()); //13
                 *nop+=2;
             }
             delete(deque);
-            class deque* tmpSt2 = new class deque();  *nop+=1;
-            tmpSt2->set_nop(nop); *nop+=1;
+            class deque* tmpSt2 = new class deque();  *nop+=1; //1
+            tmpSt2->set_nop(nop); *nop+=1; //1
             for (int i = 0; i < size; i++){
-                tmpSt2->push_down(tmpSt1->pop_down());
+                tmpSt2->push_down(tmpSt1->pop_down()); //13
                 *nop+=2;
             }
             delete(tmpSt1);
-            deque = tmpSt2; *nop+=1;
+            deque = tmpSt2; *nop+=1; //1
             return true;
         }
     }
@@ -160,25 +159,25 @@ void adapteur_deque_ptr::pop_top(){
 void adapteur_deque_ptr::pop_down(){
     deque->pop_down();
 }
-void adapteur_deque_ptr::display(){
-    class deque* tmpSt1 = new class deque(); *nop+=1;
-    tmpSt1->set_nop(nop); *nop+=1;
-    int size = deque->get_size(); *nop+=2;
+void adapteur_deque_ptr::display(){ //1+1+2+15n+1+1+13n+1
+    class deque* tmpSt1 = new class deque(); *nop+=1; //1
+    tmpSt1->set_nop(nop); *nop+=1; //1
+    int size = deque->get_size(); *nop+=2; //1
     for (int i = 0; i < size; i++){
-        int element = deque->pop_down();
-        std::cout << " " << element;
-        tmpSt1->push_down(element);
+        int element = deque->pop_down(); // 6 +1
+        std::cout << " " << element; //1
+        tmpSt1->push_down(element); //7
         *nop+=4;
     }
     std::cout << std::endl;
     delete(deque);
-    class deque* tmpSt2 = new class deque(); *nop+=1;
-    tmpSt2->set_nop(nop); *nop+=1;
+    class deque* tmpSt2 = new class deque(); *nop+=1; //1
+    tmpSt2->set_nop(nop); *nop+=1; //1
     for (int i = 0; i < size; i++){
-        tmpSt2->push_down(tmpSt1->pop_down()); *nop+=2;
+        tmpSt2->push_down(tmpSt1->pop_down()); *nop+=2; //13
     }
     delete(tmpSt1);
-    deque = tmpSt2;
+    deque = tmpSt2; //1
     *nop+=1;
 }
 
@@ -186,4 +185,3 @@ adapteur_deque_ptr::~adapteur_deque_ptr(){
     delete deque;
 }
 
-#endif /* adapteur_hpp */

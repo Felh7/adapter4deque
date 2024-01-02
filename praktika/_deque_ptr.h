@@ -1,8 +1,7 @@
-
-#ifndef _deque_ptr_hpp
-#define _deque_ptr_hpp
+#pragma once
 
 #include <iostream>
+
 class deque{
     
     //int* arr;
@@ -68,8 +67,8 @@ bool deque::isEmpty(){
     return top == nullptr;
 }
 
-void deque::push_top(int x){
-    Node *newNode = new Node(); *nop +=1;
+void deque::push_top(int x){//1+3+3 = 7
+    Node *newNode = new Node(); *nop +=1; 
     if (size == 0) {
         newNode -> data = x;
         newNode -> prev = nullptr;
@@ -87,7 +86,7 @@ void deque::push_top(int x){
     size++;
     *nop += 3;
 }
-void deque::push_down(int x){
+void deque::push_down(int x){ // 1+3+3=7
     Node *newNode = new Node(); *nop+=1;
     if (size == 0) {
         newNode -> data = x;
@@ -107,7 +106,7 @@ void deque::push_down(int x){
     *nop +=3;
 }
 
-int deque::pop_top(){
+int deque::pop_top(){// 1+ 5= 6
     int data;
     if (isEmpty())
         {
@@ -136,7 +135,7 @@ int deque::pop_top(){
     return data;
 }
 
-void deque::print_all(){
+void deque::print_all(){ //1+2n
     if (isEmpty())
         {
             std::cout << "Underflow\nProgram Terminated\n";
@@ -153,7 +152,7 @@ void deque::print_all(){
     }
 }
 
-int deque::pop_down(){
+int deque::pop_down(){//1+5=6
     int data;
     if (isEmpty())
         {
@@ -182,4 +181,3 @@ int deque::pop_down(){
     return data;
 }
 
-#endif /* deque_hpp */
