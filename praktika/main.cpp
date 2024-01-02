@@ -68,9 +68,9 @@ int main() {
     return 0;*/
     std::vector vect = {100, 300, 500, 800, 1000, 1500, 2000, 2500, 3000, 3500 };
     int n = 2;
-    /*for (int i=0;i<vect.size();i++){
+    for (int i=0;i<vect.size();i++){
         std:: cout << "num of operations: " << vect[i]<<std::endl;
         sorting(vect[i]);
-    }*/
-    sorting(n);
+    }
+   // sorting(n);
 }

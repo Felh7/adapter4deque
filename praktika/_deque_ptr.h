@@ -70,7 +70,6 @@ bool deque::isEmpty(){
 
 void deque::push_top(int x){
     Node *newNode = new Node(); *nop +=1;
-    *nop +=1;
     if (size == 0) {
         newNode -> data = x;
         newNode -> prev = nullptr;
@@ -90,7 +89,6 @@ void deque::push_top(int x){
 }
 void deque::push_down(int x){
     Node *newNode = new Node(); *nop+=1;
-    *nop +=1;
     if (size == 0) {
         newNode -> data = x;
         newNode -> next = nullptr;
@@ -111,7 +109,6 @@ void deque::push_down(int x){
 
 int deque::pop_top(){
     int data;
-    *nop+=1;
     if (isEmpty())
         {
             std::cout << "Underflow\nProgram Terminated\n";
@@ -119,7 +116,6 @@ int deque::pop_top(){
         }
     else{
         Node *temp = top; *nop+=1;
-        *nop+=1;
         if (top->prev != nullptr){
             top -> prev -> next = nullptr;
             top = temp->prev;
@@ -141,7 +137,6 @@ int deque::pop_top(){
 }
 
 void deque::print_all(){
-    *nop+=1;
     if (isEmpty())
         {
             std::cout << "Underflow\nProgram Terminated\n";
@@ -149,7 +144,7 @@ void deque::print_all(){
         }
     else{
         Node* current = back; *nop+=1;
-        while (current != nullptr) { *nop+=1;
+        while (current != nullptr) { 
             std:: cout << current-> data;
             current = current->next;
             *nop+=2;
@@ -160,7 +155,6 @@ void deque::print_all(){
 
 int deque::pop_down(){
     int data;
-    *nop+=1;
     if (isEmpty())
         {
             std::cout << "Underflow\nProgram Terminated\n";
@@ -168,7 +162,6 @@ int deque::pop_down(){
         }
     else{
         Node *temp = back; *nop+=1;
-        *nop+=1;
         if (back -> next != nullptr){
             back -> next -> prev = nullptr;
             back = temp->next;

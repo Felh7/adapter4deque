@@ -10,7 +10,6 @@ void merge(adapteur_deque_ptr& array, int const left, int const mid, int const r
     temp->set_nop(nop); *nop+=1;
 
     while (i <= mid &&  j <= right) { *nop+=3;
-        *nop+=3;
         if (array.getElement(i) <= array.getElement(j)) {
             temp->push_down(array.getElement(i)); *nop+=2;
             ++i; *nop+=1;
@@ -28,8 +27,7 @@ void merge(adapteur_deque_ptr& array, int const left, int const mid, int const r
         temp->push_down(array.getElement(j)); *nop+=2;
         ++j; *nop+=1;
     }
-    *nop+=1;
-    for (int i = left; i <= right; ++i){ *nop+=2;
+    for (int i = left; i <= right; ++i){
         array.setElement(i, temp->getElement(i - left));
         *nop+=3;
     }
@@ -38,7 +36,6 @@ void merge(adapteur_deque_ptr& array, int const left, int const mid, int const r
 }
 void MergeSort(adapteur_deque_ptr& array, int left, int right, long long* nop ) {
     //int* nop = _nop;
-    *nop+=1;
     if (left < right) {
         int mid = (left + right) / 2; *nop+=3;
         MergeSort(array, left, mid, nop); *nop+=1;
