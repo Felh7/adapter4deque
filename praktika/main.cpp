@@ -30,7 +30,7 @@ void example_metods() {
 void example_sort() {
     int n = 10;  //количество элементов в деке
     adapteur_deque_ptr deque;
-    int * nop = new int;
+    long long * nop = new long long;
     *nop = 0;
     //заполнение дека
     for(int i=0;i<n;i++){
@@ -45,7 +45,7 @@ void example_sort() {
 }
 
 void sorting(int n){
-    int * nop = new int;
+    long long * nop = new long long;
     *nop = 0;
     adapteur_deque_ptr *deque = new adapteur_deque_ptr();
     deque->set_nop(nop);
@@ -66,6 +66,11 @@ int main() {
     std::cout << float(clock() - begin_time) / CLOCKS_PER_SEC << std::endl;
     std::cout << "NOP: " << nop << std::endl;
     return 0;*/
-    int n = 300;
+    std::vector vect = {100, 300, 500, 800, 1000, 1500, 2000, 2500, 3000, 3500 };
+    int n = 2;
+    /*for (int i=0;i<vect.size();i++){
+        std:: cout << "num of operations: " << vect[i]<<std::endl;
+        sorting(vect[i]);
+    }*/
     sorting(n);
 }

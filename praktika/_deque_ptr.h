@@ -17,13 +17,13 @@ private:
     Node* top;
     int size;
     int max_size;
-    int * nop;
+    long long * nop;
 
 public:
     deque();
     ~deque();
-    void set_nop(int* nop);
-    int* get_nop();
+    void set_nop(long long* nop);
+    long long* get_nop();
     int pop_top();
     int pop_down();
     int peek();
@@ -38,7 +38,7 @@ public:
 deque::deque(): size{0} {
     top = nullptr;
     back = nullptr;
-    nop = new int;
+    nop = new long long;
 }
 
 deque::~deque(){
@@ -53,10 +53,10 @@ deque::~deque(){
         }
     }
 }
-void deque::set_nop(int* nop){
+void deque::set_nop(long long* nop){
     this->nop = nop;
 }
-int* deque::get_nop(){
+long long* deque::get_nop(){
     return nop;
 }
 
@@ -89,19 +89,19 @@ void deque::push_top(int x){
     *nop += 3;
 }
 void deque::push_down(int x){
-    Node *newNode = new Node();
+    Node *newNode = new Node(); *nop+=1;
     *nop +=1;
     if (size == 0) {
         newNode -> data = x;
         newNode -> next = nullptr;
         top = newNode;
-        *nop +=4;
+        *nop +=3;
     }
     else{
         newNode -> data = x;
         newNode -> next =  back;
         newNode -> next -> prev = newNode;
-        *nop +=4;
+        *nop +=3;
     }
     newNode -> prev = nullptr;
     back = newNode;
@@ -126,7 +126,7 @@ int deque::pop_top(){
             data =temp -> data;
             delete temp;
             size--;
-            *nop +=5;
+            *nop +=4;
         }
         else{
             data = top ->data;
@@ -149,12 +149,11 @@ void deque::print_all(){
         }
     else{
         Node* current = back; *nop+=1;
-        while (current != nullptr) {
+        while (current != nullptr) { *nop+=1;
             std:: cout << current-> data;
             current = current->next;
             *nop+=2;
         }
-        *nop+=1;
         std::cout << std::endl;
     }
 }
@@ -184,7 +183,7 @@ int deque::pop_down(){
             back = nullptr;
             top = nullptr;
             size--;
-            *nop+=4;
+            *nop+=5;
         }
     }
     return data;
