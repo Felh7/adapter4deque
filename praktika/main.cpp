@@ -47,15 +47,15 @@ void example_sort() {
 void sorting(int n){
     int * nop = new int;
     *nop = 0;
-    adapteur_deque_ptr deque;
-    deque.set_nop(nop);
+    adapteur_deque_ptr *deque = new adapteur_deque_ptr();
+    deque->set_nop(nop);
     for(int i=0;i<n;i++){
-        deque.push_down(rand() % 100);
+        deque->push_down(rand() % 100);
     }
     const clock_t begin_time = clock();
-    MergeSort(deque, 0, n-1, deque.get_nop());
+    MergeSort(*deque, 0, n-1, nop);
     std::cout << float(clock() - begin_time) / CLOCKS_PER_SEC << std::endl;
-    std::cout << "NOP: " << deque.get_nop() << std::endl;
+    std::cout << "NOP: " << *deque->get_nop() << std::endl;
 }
 int main() {
     //example_metods();
@@ -66,6 +66,6 @@ int main() {
     std::cout << float(clock() - begin_time) / CLOCKS_PER_SEC << std::endl;
     std::cout << "NOP: " << nop << std::endl;
     return 0;*/
-    int n = 3000;
+    int n = 300;
     sorting(n);
 }

@@ -6,51 +6,46 @@ void merge(adapteur_deque_ptr& array, int const left, int const mid, int const r
     int j = mid+1;
     *nop+=3;
     
-    std::vector<int>  temp;
-    
+    adapteur_deque_ptr *temp = new adapteur_deque_ptr();
+    temp->set_nop(nop);
+
     while (i <= mid &&  j <= right) {
         *nop+=3;
         if (array.getElement(i) <= array.getElement(j)) {
-            temp.push_back(array.getElement(i));
-            *nop+=3;
+            temp->push_down(array.getElement(i));
+            *nop+=2;
             ++i;
             *nop+=1;
         }
         else {
-            temp.push_back(array.getElement(j));
-            *nop+=3;
+            temp->push_down(array.getElement(j));
+            *nop+=2;
             ++j;
             *nop+=1;
         }
-        *nop+=3;
     }
-    *nop+=3;
     while (i <= mid) {
-        *nop+=1;
-        temp.push_back(array.getElement(i));
-        *nop+=3;
+        temp->push_down(array.getElement(i));
+        *nop+=2;
         ++i;
         *nop+=1;
     }
-    *nop+=1;
     while (j <= right) {
-        *nop+=1;
-        temp.push_back(array.getElement(j));
-        *nop+=3;
+        temp->push_down(array.getElement(j));
+        *nop+=2;
         ++j;
         *nop+=1;
     }
-    *nop+=1;
     for (int i = left; i <= right; ++i){
-        *nop+=2;
-        array.setElement(i, temp[i - left]);
+        array.setElement(i, temp->getElement(i - left));
         *nop+=3;
     }
-    *nop+=2;
+    delete temp;
 
 }
 void MergeSort(adapteur_deque_ptr& array, int left, int right, int* nop ) {
-    nop+=2;
+    //int* nop = _nop;
+    *nop+=1;
     if (left < right) {
         int mid = (left + right) / 2;
         *nop+=3;

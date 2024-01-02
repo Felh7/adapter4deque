@@ -69,10 +69,9 @@ bool deque::isEmpty(){
 }
 
 void deque::push_top(int x){
-    Node *newNode = new Node();
+    Node *newNode = new Node(); *nop +=1;
     *nop +=1;
     if (size == 0) {
-        *nop +=1;
         newNode -> data = x;
         newNode -> prev = nullptr;
         back = newNode;
@@ -82,7 +81,7 @@ void deque::push_top(int x){
         newNode -> data = x;
         newNode->prev = top;
         top -> next = newNode;
-        *nop +=4;
+        *nop +=3;
     }
     newNode -> next = nullptr;
     top = newNode;
@@ -112,13 +111,14 @@ void deque::push_down(int x){
 
 int deque::pop_top(){
     int data;
+    *nop+=1;
     if (isEmpty())
         {
             std::cout << "Underflow\nProgram Terminated\n";
             exit(EXIT_FAILURE);
         }
     else{
-        Node *temp = top;
+        Node *temp = top; *nop+=1;
         *nop+=1;
         if (top->prev != nullptr){
             top -> prev -> next = nullptr;
@@ -136,21 +136,19 @@ int deque::pop_top(){
             size--;
             *nop +=5;
         }
-        *nop+=1;
     }
-    *nop+=1;
     return data;
 }
 
 void deque::print_all(){
+    *nop+=1;
     if (isEmpty())
         {
             std::cout << "Underflow\nProgram Terminated\n";
             exit(EXIT_FAILURE);
         }
     else{
-        Node* current = back;
-        *nop+=1;
+        Node* current = back; *nop+=1;
         while (current != nullptr) {
             std:: cout << current-> data;
             current = current->next;
@@ -159,25 +157,26 @@ void deque::print_all(){
         *nop+=1;
         std::cout << std::endl;
     }
-    *nop+=1;
 }
 
 int deque::pop_down(){
     int data;
+    *nop+=1;
     if (isEmpty())
         {
             std::cout << "Underflow\nProgram Terminated\n";
             //exit(EXIT_FAILURE);
         }
     else{
-        Node *temp = back;
+        Node *temp = back; *nop+=1;
+        *nop+=1;
         if (back -> next != nullptr){
             back -> next -> prev = nullptr;
             back = temp->next;
             data = temp -> data;
             delete temp;
             size--;
-            *nop+=5;
+            *nop+=4;
         }
         else {
             data = back -> data;
@@ -185,11 +184,9 @@ int deque::pop_down(){
             back = nullptr;
             top = nullptr;
             size--;
-            *nop+=5;
+            *nop+=4;
         }
-        *nop+=1;
     }
-    nop+=1;
     return data;
 }
 
